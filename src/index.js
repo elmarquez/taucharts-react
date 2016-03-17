@@ -1,5 +1,5 @@
 import React from 'react';
-import TauCharts from 'taucharts';
+import { Chart } from 'taucharts';
 import equal from 'deep-equal';
 
 const TauChartReact = React.createClass({
@@ -19,7 +19,7 @@ const TauChartReact = React.createClass({
 	},
 
 	renderChart() {
-		this.chart = new TauCharts.Chart(
+		this.chart = new Chart(
 			Object.assign({}, this.props.options, { data: this.props.data })
 		);
 		this.chart.renderTo(this.refs.placeholder);
@@ -39,7 +39,7 @@ const TauChartReact = React.createClass({
 	},
 
 	render() {
-		return (<div ref="placeholder"></div>)
+		return (<div className="tauchart-container" ref="placeholder"></div>)
 	}
 
 });

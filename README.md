@@ -20,6 +20,8 @@ const chartOptions = {...};
 ```
 You can gain access to tauchart via `this.refs.tau.chart`.
 
+See a full example [here](example/index.js) (`npm run example` for run it).
+
 ## License
 
 MIT

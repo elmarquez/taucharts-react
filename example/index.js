@@ -54,7 +54,7 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<TauChart data={this.state.data} options={this.state.options} />
+			<TauChart data={this.state.data} options={this.state.options} width={800} height={600} />
 		);
 	}
 

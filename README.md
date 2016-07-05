@@ -18,9 +18,20 @@ const chartOptions = {...};
 ...
 
 ```
-You can gain access to tauchart via `this.refs.tau.chart`.
-
 See a full example [here](example/index.js) (`npm run example` for run it).
+
+## Available props
+
+* **data** - Array (required) - chart data
+* **options** - Object (required) - chart options
+* **className** - String - `className` for wrapper
+* **height** - Number - chart height.
+* **width** - Number - chart width.
+
+## Tips
+
+* Specify `height` and `width` for decreasing repainting (works well if your data changes frequently).
+* You can gain access to tauchart via `this.refs.tau.chart`
 
 ## License
 

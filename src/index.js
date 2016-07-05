@@ -22,11 +22,24 @@ const TauChartReact = React.createClass({
 		this.chart = new Chart(
 			Object.assign({}, this.props.options, { data: this.props.data })
 		);
-		this.chart.renderTo(this.refs.placeholder);
+
+		if (this.props.height && this.props.width) {
+			this.chart.renderTo(this.refs.placeholder, {
+				height: this.props.height,
+				width: this.props.width
+			});
+		} else {
+			this.chart.renderTo(this.refs.placeholder);
+		}
+
 	},
 
 	shouldComponentUpdate(newProps) {
-		if (equal(newProps.options, this.props.options, { strict: true })) {
+		if (newProps.className === this.props.className &&
+			newProps.height === this.props.height &&
+			newProps.width === this.props.width &&
+			equal(newProps.options, this.props.options, { strict: true })
+		) {
 			this.chart.setData(newProps.data);
 			return false;
 		}
@@ -39,7 +52,7 @@ const TauChartReact = React.createClass({
 	},
 
 	render() {
-		return (<div className="tauchart-container" ref="placeholder"></div>)
+		return (<div style={{height: '100%'}} className={this.props.className} ref="placeholder"></div>)
 	}
 
 });

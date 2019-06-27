@@ -1,23 +1,42 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Chart } from 'taucharts';
 import equal from 'deep-equal';
 
-const TauChartReact = React.createClass({
-	displayName: 'TauChart',
-
-	propTypes: {
-		options: React.PropTypes.object.isRequired,
-		data: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
-	},
-
-	componentWillUnmount() {
-		this.chart.destroy();
-	},
+/**
+ * Wrapper for TauCharts library.
+ */
+class TauChartReact extends React.Component {
+	constructor(props) {
+		super(props);
+		this.displayName = 'TauChart';
+	}
 
 	componentDidMount() {
 		this.renderChart();
-	},
+	}
 
+	componentDidUpdate() {
+		this.chart.destroy();
+		this.renderChart();
+	}
+
+	componentWillUnmount() {
+		this.chart.destroy();
+	}
+
+  /**
+	 * Render the component.
+	 * @return {JSX.Element}
+	 */
+	render() {
+		return (<div style={{height: '100%'}} className={this.props.className} ref="placeholder"></div>)
+	}
+
+  /**
+	 * Render the chart.
+	 * @return {JSX.Element}
+	 */
 	renderChart() {
 		this.chart = new Chart(
 			Object.assign({}, this.props.options, { data: this.props.data })
@@ -31,10 +50,13 @@ const TauChartReact = React.createClass({
 		} else {
 			this.chart.renderTo(this.refs.placeholder);
 		}
+	}
 
-	},
-
-	shouldComponentUpdate(newProps) {
+	/**
+	 * Determine if the chart should be rerendered.
+	 * @return {boolean}
+	 */
+  shouldComponentUpdate(newProps) {
 		if (newProps.className === this.props.className &&
 			newProps.height === this.props.height &&
 			newProps.width === this.props.width &&
@@ -44,17 +66,12 @@ const TauChartReact = React.createClass({
 			return false;
 		}
 		return true;
-	},
-
-	componentDidUpdate() {
-		this.chart.destroy();
-		this.renderChart();
-	},
-
-	render() {
-		return (<div style={{height: '100%'}} className={this.props.className} ref="placeholder"></div>)
 	}
+}
 
-});
+TauChartReact.propTypes = {
+	data: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+	options: React.PropTypes.object.isRequired,
+};
 
 export default TauChartReact;

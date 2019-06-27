@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TauChart from 'taucharts-react';
+import TauChart from '../src/index';
 import { times, identity } from 'lodash';
 
 const chartOptions = {
@@ -8,7 +8,6 @@ const chartOptions = {
 	x: ['x'],
 	y: ['y'],
 	color: 'type',
-
 	guide: [
 		{
 			x: { autoScale: false },

@@ -69,9 +69,9 @@ class TauChartReact extends React.Component {
   }
 }
 
-TauChartReact.propTypes = {
-  data: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  options: React.PropTypes.object.isRequired,
-};
+// TauChartReact.propTypes = {
+//   data: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+//   options: React.PropTypes.object.isRequired,
+// };
 
 export default TauChartReact;
